@@ -1,75 +1,65 @@
-SpoutcraftAPI
-=====
-
-Copyright &copy; 2011, SpoutDev <dev@getspout.org>  
-Spout is licensed under [GNU LESSER GENERAL PUBLIC LICENSE Version 3][License]
-
+[![SpoutcraftAPI][Project Logo]][Website]
 What is SpoutcraftAPI?
------
-SpoutcraftAPI aims to add a Bukkit-like system to the client. 
-It extends Spout/Spoutcraft's goal of removing the barrier 
-between server and client. 
+----------------------
+SpoutcraftAPI aims to add a Bukkit-like system to the client. It extends Spout/Spoutcraft's goal of removing the barrier between server and client. 
 
-A Long Rambling of how SpoutcraftAPI will work by alta189
------
+Copyright &copy; 2011, SpoutDev <[Website]>  
+SpoutcraftAPI is licensed under [GNU LESSER GENERAL PUBLIC LICENSE Version 3][License]
 
-Before you read this, understand that I wrote this on my phone
-and may have made grammatical and spelling mistakes. I also 
-will not be very structured, and hence the Section title "Ramble."
+Who is SpoutDev?
+----------------
+SpoutDev is the team behind Spout, SpoutAPI, Spoutcraft, SpoutcraftAPI, and Spoutcraft Launcher.  
+[![Afforess](https://secure.gravatar.com/avatar/ea0be49e1e4deac42ed9204ffd95b56c?d=mm&r=pg&s=48)](http://forums.getspout.org/members/afforess.2/) 
+[![alta189](https://secure.gravatar.com/avatar/7a087430b2bf9456b8879c5469aadb95?d=mm&r=pg&s=48)](http://forums.getspout.org/members/alta189.3/) 
+[![Wulfspider](https://secure.gravatar.com/avatar/6f2a0dcb60cd1ebee57875f9326bc98c?d=mm&r=pg&s=48)](http://forums.getspout.org/members/wulfspider.1/) 
+[![Raphfrk](https://secure.gravatar.com/avatar/68186a30d5a714f6012a9c48d2b10630?d=mm&r=pg&s=48)](http://forums.bukkit.org/members/raphfrk.294/) 
+[![narrowtux](https://secure.gravatar.com/avatar/f110a5b8feacea25275521f4efd0d7f2?d=mm&r=pg&s=48)](http://forums.getspout.org/members/narrowtux.5/) 
+[![Top_Cat](https://secure.gravatar.com/avatar/defeffc70d775f6df95b68f0ece46c9e?d=mm&r=pg&s=48)](http://forums.getspout.org/members/top_cat.4/) 
+[![Olloth](https://secure.gravatar.com/avatar/fa8429add105b86cf3b61dbe15638812?d=mm&r=pg&s=48)](http://forums.getspout.org/members/olloth.6/) 
+[![Rycochet](https://secure.gravatar.com/avatar/b06c12e72953e0edd3054a8645d76791?d=mm&r=pg&s=48)](http://forums.getspout.org/members/rycochet.10/)
 
-Our idea for SpoutcraftAPI is to create a Bukkit like system for 
-the client. Someone asked me why would couldn't just port Bukkit 
-to the client. Well the big issue is that Bukkit is a server 
-system, it will take more time to do what would be needed to do that 
-than it would to create a new system that is extremely similar to 
-Bukkit. To prevent confusion between Plugins(Bukkit) and Mods(something
-that you put into your minecraft.jar file, ex. BuildCraft) we decided
-to call ours Addons. The structure of an Addon will be 90% to the 
-structure of a plugin. Instead of having a plugin.yml there will be an
-addon.yml which will be extremely similar. Your main class will extend 
-JavaAddon like with a plugin you extend JavaPlugin. 
+Visit our [website][Website] or get support on our [forums][Forums].  
+Track and submit issues and bugs on our [issue tracker][Issues].
 
-Why are we copying Bukkit for the client API?
+[![Follow us on Twitter][Twitter Logo]][Twitter][![Like us on Facebook][Facebook Logo]][Facebook][![Donate to the Spout project][Donate Logo]][Donate]
 
-This is simple. As a team we discussed how Bukkit had created a very 
-good and easy to use API structure. As Afforess stated, there is no
-reason to reinvent the wheel. We also do not want developers to have
-to learn an entire new API system. While a lot of things will be 
-different overall it will be the same system.
+Source
+------
+The latest and greatest source can be found on [GitHub].  
+Download the latest builds from [Jenkins].  
+View the latest [Javadoc].
 
-What will the Addons have access to?
+Compiling
+---------
+SpoutcraftAPI uses Maven to handle its dependencies.
 
-At the first release of SpoutcraftAPI, access will be limited. Why?
-Well you will not be able to directly access any classes in net.minecraft.
-Instead we will create wrappers and API needed for you what you need to accomplish what you want to do. If the API 
-that you need does not currently exist, either create it yourself and 
-submit a pull request, or create a detailed Feature Request with exactly
-what you need and we will try to add it when we can. 
+SpoutcraftAPI requires LWJGL and other libraries (preferrably the latest version or source).  
+* Install [Maven 2 or 3](http://maven.apache.org/download.html)  
+* Checkout this repo and run: `mvn clean package`
 
-What about the existing client mods?
+Coding and Pull Request Formatting
+----------------------------------
+* Generally follow the Oracle coding standards.
+* Use tabs, no spaces.
+* No 80 column limit or midstatement newlines.
+* Pull requests must compile and work.
+* Pull requests must be formatted properly.
+* If you change a packet or widget's read/write/number of bytes, be sure to increment the version on both the server and client.
 
-We know that all developers will not switch to our system, either 
-out of disdain for our project, or because of sheer laziness. Many people
-have made comments that we don't care out other client mods, but what they
-do not understand is that we really do. That is why we are creating this 
-client API. It will create a way that will prevent most if not all 
-incompatibilities. Modloader was meant to remove most, but its time for
-one that allows easy "modding" to the client and a way to easily use that
-mod on a multiplayer server. Many servers had to choose between the benefits
-of a CraftBukkit server and new blocks/items/mobs for modded vanilla server as
-Modloader MP was incompatible with craftbukkit. The feedback that we have 
-received from some client modders has been very disappointing. They believe 
-since we do not support Modloader and believe that its usefulness is starting 
-to fade, that we do not care about them and are arrogant. This is incorrect.
-As I stated above , we do care about other client mods. I believe that they
-have this opinion because they are nervous about change. Again I want to
-state that we do not hate client mods or modloader, we just believe that
-it is time for a new system and are working to give the community an
-easy to use system.
+**Please follow the above conventions if you want your pull request(s) accepted.**
 
-I hope that I have given you a little better glimpse into the project,
-and that you are starting to understand how it will work, I plan to add
-more to this description as we move through the early stages of development
-and as we decide on different things or changes to SpoutcraftAPI.
-
+[Project Logo]: http://cdn.getspout.org/img/logo/spoutcraft_551x150.png
 [License]: http://www.gnu.org/licenses/lgpl.html
+[Website]: http://www.spoutcraft.org
+[Forums]: http://forums.getspout.org
+[GitHub]: https://github.com/SpoutDev/SpoutcraftAPI
+[Javadoc]: http://jd.spoutcraft.org/latest
+[Jenkins]: http://spout.in/ci
+[Issues]: http://spout.in/issues
+[Twitter]: http://spout.in/twitter
+[Twitter Logo]: http://cdn.getspout.org/img/button/twitter_follow_us.png
+[Facebook]: http://spout.in/facebook
+[Facebook Logo]: http://cdn.getspout.org/img/button/facebook_like_us.png
+[Donate]: https://www.paypal.com/cgi-bin/webscr?hosted_button_id=QNJH72R72TZ64&item_name=Spoutcraft+donation+%28from+github.com%29&cmd=_s-xclick
+[Donate Logo]: http://cdn.getspout.org/img/button/donate_paypal_96x96.png
+[MCP]: http://mcp.ocean-labs.de/index.php/MCP_Releases
