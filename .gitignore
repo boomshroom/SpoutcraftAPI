@@ -50,6 +50,7 @@ build
 dist
 nbproject
 build.xml
+nb-configuration.xml
 
 # IntelliJ IDEA files #
 #######################
