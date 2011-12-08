@@ -14,7 +14,7 @@
 	<version>dev-SNAPSHOT</version>
 	<name>SpoutcraftAPI</name>
 	<url>http://www.spoutcraft.org</url>
-	<description>SpoutcraftAPI aims to add a Bukkit-like system to the client. It extends Spout/Spoutcraft's goal of removing the barrier between server and client. </description>
+	<description>SpoutcraftAPI aims to add a Bukkit-like system to the client. It extends Spout/Spoutcraft's goal of removing the barrier between server and client.</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -46,11 +46,11 @@
 	<repositories>
 		<repository>
 			<id>spout-repo</id>
-			<url>http://repo.getspout.org/content/repositories/snapshots</url>
+			<url>http://repo.getspout.org</url>
 		</repository>
 	</repositories>
 
-	<!--  Dependency Information -->
+	<!--  Dependency -->
 	<dependencies>
 		<dependency>
 			<groupId>org.lwjgl</groupId>
