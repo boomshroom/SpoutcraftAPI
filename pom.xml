@@ -131,6 +131,7 @@
 						<configuration>
 							<artifactSet>
 								<includes>
+									<include>org.getspout:*</include>
 									<include>org.yaml:snakeyaml</include>
 									<include>org.apache.commons:commons-lang3</include>
 								</includes>
