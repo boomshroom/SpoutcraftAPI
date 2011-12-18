@@ -18,6 +18,6 @@
 package org.spoutcraft.spoutcraftapi.entity;
 
 /**
- * Represents a Monster.
+ * Represents a Mooshroom.
  */
-public interface Monster extends Creature {}
+public interface Mooshroom extends Cow {}

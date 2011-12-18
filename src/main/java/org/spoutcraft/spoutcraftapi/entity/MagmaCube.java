@@ -18,6 +18,6 @@
 package org.spoutcraft.spoutcraftapi.entity;
 
 /**
- * Represents a Monster.
+ * Represents a Magma Cube.
  */
-public interface Monster extends Creature {}
+public interface MagmaCube extends Slime {}

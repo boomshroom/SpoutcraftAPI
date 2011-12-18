@@ -14,10 +14,27 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.spoutcraft.spoutcraftapi.entity;
 
 /**
- * Represents a Monster.
+ * Represents a Villager.
  */
-public interface Monster extends Creature {}
+public interface Villager extends Creature {
+
+	/**
+	 * Gets the occupation of this villager.
+	 *
+	 * @return The occupation.
+	 */
+	public Occupation getOccupation();
+
+	public enum Occupation {
+		VILLAGER,
+		FARMER,
+		LIBRARIAN,
+		PRIEST,
+		BLACKSMITH,
+		BUTCHER;
+	}
+
+}

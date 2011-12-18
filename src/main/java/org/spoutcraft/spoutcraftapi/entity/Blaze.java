@@ -18,6 +18,6 @@
 package org.spoutcraft.spoutcraftapi.entity;
 
 /**
- * Represents a Monster.
+ * Represents a Blaze.
  */
-public interface Monster extends Creature {}
+public interface Blaze extends Monster {}
