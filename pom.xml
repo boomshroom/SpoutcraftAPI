@@ -1,29 +1,24 @@
-<!--
-	Maven build file for SpoutcraftAPI
-
-	Copyright (c) 2011-2012 SpoutDev <http://www.spout.org>
-	SpoutcraftAPI is licensed under GNU LESSER GENERAL PUBLIC LICENSE Version 3
--->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<!-- Project information -->
+	<name>SpoutcraftAPI</name>
 	<groupId>org.spoutcraft</groupId>
 	<artifactId>spoutcraftapi</artifactId>
 	<version>dev-SNAPSHOT</version>
-	<name>SpoutcraftAPI</name>
 	<url>http://www.spout.org</url>
+	<inceptionYear>2011</inceptionYear>
 	<description>SpoutcraftAPI aims to add a Bukkit-like system to the client. It extends Spout/Spoutcraft's goal of removing the barrier between server and client.</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<lwjglVersion>2.8.3</lwjglVersion>
 	</properties>
 
 	<!-- License -->
 	<licenses>
 		<license>
-			<name>GNU LESSER GENERAL PUBLIC LICENSE Version 3</name>
+			<name>GNU Lesser General Public License Version 3</name>
 			<url>http://www.gnu.org/licenses/lgpl.html</url>
 			<distribution>repo</distribution>
 		</license>
@@ -39,8 +34,14 @@
 	<!-- Continuous integration -->
 	<ciManagement>
 		<system>jenkins</system>
-		<url>http://ci.spout.org</url>
+		<url>http://build.spout.org</url>
 	</ciManagement>
+
+	<!-- Issue management -->
+	<issueManagement>
+		<system>JIRA</system>
+		<url>http://issues.spout.org</url>
+	</issueManagement>
 
 	<!-- Repository locations -->
 	<repositories>
@@ -49,19 +50,25 @@
 			<url>http://repo.spout.org</url>
 		</repository>
 	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spout-plugins</id>
+			<url>http://repo.spout.org</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<!--  Dependency -->
 	<dependencies>
 		<dependency>
 			<groupId>org.lwjgl.lwjgl</groupId>
 			<artifactId>lwjgl</artifactId>
-			<version>2.8.3</version>
+			<version>${lwjglVersion}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.yaml</groupId>
 			<artifactId>snakeyaml</artifactId>
-			<version>1.9</version>
+			<version>1.10</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -78,9 +85,9 @@
 		</dependency>
 	</dependencies>
 
+	<!-- Build settings -->
 	<build>
-		<defaultGoal>clean install</defaultGoal>
-		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+		<defaultGoal>clean package install</defaultGoal>
 		<!-- Resources -->
 		<resources>
 			<resource>
@@ -94,27 +101,59 @@
 		</resources>
 		<!-- Plugins -->
 		<plugins>
+			<!-- License header formatting plugin -->
+			<plugin>
+				<groupId>com.mycila.maven-license-plugin</groupId>
+				<artifactId>maven-license-plugin</artifactId>
+				<version>1.10.b1</version>
+				<executions>
+					<execution>
+						<phase>clean</phase>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<quiet>true</quiet>
+					<encoding>UTF-8</encoding>
+					<strictCheck>true</strictCheck>
+					<header>${basedir}/HEADER.txt</header>
+					<keywords>
+						<keyword>${project.name}</keyword>
+						<keyword>license</keyword>
+					</keywords>
+					<mapping>
+						<java>SLASHSTAR_STYLE</java>
+					</mapping>
+					<properties>
+						<name>${project.name}</name>
+						<url>${project.url}</url>
+						<license>GNU Lesser General Public License</license>
+						<licenseUrl>http://www.gnu.org/licenses/lgpl.html</licenseUrl>
+						<copyright>Copyright (c) ${project.inceptionYear}-2012, SpoutDev</copyright>
+					</properties>
+					<includes>
+						<include>src/main/java/**</include>
+						<include>src/test/java/**</include>
+					</includes>
+				</configuration>
+			</plugin>
 			<!-- Compile plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>2.4</version>
 				<configuration>
 					<source>1.5</source>
 					<target>1.5</target>
 				</configuration>
 			</plugin>
-			<!-- JAR creation plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.3.2</version>
-			</plugin>
 			<!-- JAR dependency addition plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>1.5</version>
+				<version>1.6</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -122,6 +161,7 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
+							<minimizeJar>true</minimizeJar>
 							<artifactSet>
 								<excludes>
 									<exclude>org.lwjgl.lwjgl:lwjgl</exclude>
