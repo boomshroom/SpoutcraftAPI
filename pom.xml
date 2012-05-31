@@ -26,9 +26,9 @@
 
 	<!-- Source code -->
 	<scm>
-		<developerConnection>scm:git:git@github.com:SpoutDev/${project.name}.git</developerConnection>
-		<connection>scm:git:git://github.com/SpoutDev/${project.name}.git</connection>
-		<url>https://github.com/SpoutDev/${project.name}</url>
+		<developerConnection>scm:git:git@github.com:SpoutDev/SpoutcraftAPI.git</developerConnection>
+		<connection>scm:git:git://github.com/SpoutDev/SpoutcraftAPI.git</connection>
+		<url>https://github.com/SpoutDev/SpoutcraftAPI</url>
 	</scm>
 
 	<!-- Continuous integration -->
@@ -57,19 +57,13 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-	<!--  Dependency -->
+	<!-- Dependencies -->
 	<dependencies>
 		<dependency>
 			<groupId>org.lwjgl.lwjgl</groupId>
 			<artifactId>lwjgl</artifactId>
 			<version>${lwjglVersion}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.yaml</groupId>
-			<artifactId>snakeyaml</artifactId>
-			<version>1.10</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -83,11 +77,17 @@
 			<version>3.0.2</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
+			<version>1.10</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<!-- Build settings -->
 	<build>
-		<defaultGoal>clean package install</defaultGoal>
+		<defaultGoal>clean install</defaultGoal>
 		<!-- Resources -->
 		<resources>
 			<resource>
@@ -162,11 +162,15 @@
 						</goals>
 						<configuration>
 							<minimizeJar>true</minimizeJar>
-							<artifactSet>
-								<excludes>
-									<exclude>org.lwjgl.lwjgl:lwjgl</exclude>
-								</excludes>
-							</artifactSet>
+							<filters>
+								<filter>
+									<artifact>org.apache.commons:commons-lang3</artifact>
+									<excludes>
+										<exclude>META-INF/**</exclude>
+										<exclude>templates/**</exclude>
+									</excludes>
+								</filter>
+							</filters>
 						</configuration>
 					</execution>
 				</executions>
